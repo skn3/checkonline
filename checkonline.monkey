@@ -4,7 +4,7 @@ Strict
 ' - first commit
 
 'set if supported and import native libs
-#If TARGET = "html5" Or TARGET = "ios" Or TARGET = "win8"
+#If TARGET = "html5" Or TARGET = "ios"
 	#SKN3_CHECKONLINE_IMPLEMENTED=True
 	Import "native/checkonline.${TARGET}.${LANG}"
 	
