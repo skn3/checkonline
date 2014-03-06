@@ -45,7 +45,7 @@ Strict
 #SKN3_CHECKONLINE_IMPLEMENTED = False
 
 'check if supported
-#If SKN3_CHECKONLINE_IMPLEMENTED = False
+#If SKN3_CHECKONLINE_IMPLEMENTED = 0
 	Function IsOnline:Bool()
 		' --- default action ---
 		Return False
