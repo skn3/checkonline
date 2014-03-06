@@ -13,4 +13,14 @@ class Skn3CheckOnline {
 	    }
 	    return false;
 	}
+	
+	public static boolean IsOnMobileNetwork() {
+	    ConnectivityManager manager = (ConnectivityManager) BBAndroidGame.AndroidGame().GetActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+		
+	    NetworkInfo[] netInfo = manager.getAllNetworkInfo();
+	    for (NetworkInfo info : netInfo) {
+	        if (info.getTypeName().equalsIgnoreCase("MOBILE") && info.isConnected()) { return true; }
+	    }
+	    return false;
+	}
 }

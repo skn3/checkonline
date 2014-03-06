@@ -32,6 +32,14 @@ Class MyApp Extends App
 		If IsOnline()
 			SetColor(0, 255, 0)
 			DrawText("online :D", 5, 5)
+			
+			If IsOnMobileNetwork()
+				SetColor(255, 0, 0)
+				DrawText("on mobile network", 5, 25)
+			Else
+				SetColor(0, 255, 0)
+				DrawText("on wifi/lan", 5, 25)
+			EndIf
 		Else
 			SetColor(255, 0, 0)
 			DrawText("offline :(", 5, 5)

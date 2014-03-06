@@ -1,5 +1,7 @@
 Strict
 
+'version 2
+' - updated to add IsOnMobileNetwork()
 'version 1
 ' - first commit
 
@@ -10,6 +12,7 @@ Strict
 	
 	Extern
 		Function IsOnline:Bool()
+		Function IsOnMobileNetwork:bool()
 	Public
 #Elseif TARGET = "ios"
 	#LIBS += "SystemConfiguration.framework"
@@ -20,6 +23,7 @@ Strict
 	
 	Extern
 		Function IsOnline:Bool()
+		Function IsOnMobileNetwork:bool()
 	Public
 #elseif TARGET="android"
 	#SKN3_CHECKONLINE_IMPLEMENTED=True
@@ -27,6 +31,7 @@ Strict
 	
 	Extern
 		Function IsOnline:Bool() = "Skn3CheckOnline.IsOnline"
+		Function IsOnMobileNetwork:bool()
 	Public
 #elseif LANG="cpp"
 	#SKN3_CHECKONLINE_IMPLEMENTED=True
@@ -34,13 +39,19 @@ Strict
 	
 	Extern
 		Function IsOnline:Bool()
+		Function IsOnMobileNetwork:bool()
 	Public
 #End
 #SKN3_CHECKONLINE_IMPLEMENTED = False
 
 'check if supported
-#If SKN3_CHECKONLINE_IMPLEMENTED = "0"
+#If SKN3_CHECKONLINE_IMPLEMENTED = False
 	Function IsOnline:Bool()
+		' --- default action ---
+		Return False
+	End
+	
+	Function IsOnMobileNetwork:bool()
 		' --- default action ---
 		Return False
 	End

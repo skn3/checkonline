@@ -8,6 +8,12 @@ bool IsOnline() {
 	return false;
 }
 
+bool IsOnMobileNetwork() {
+	//Retrieve the ConnectionProfile
+	ConnectionProfile^ profile = NetworkInformation::GetInternetConnectionProfile();
+    return (profile && profile->GetNetworkConnectivityLevel() == NetworkConnectivityLevel::InternetAccess && profile.GetConnectionCost() != NetworkCostType.Unrestricted);
+}
+
 #elif WINDOWS_8
 using namespace Windows::Networking::Connectivity;
 
@@ -15,6 +21,12 @@ bool IsOnline() {
 	//Retrieve the ConnectionProfile
 	ConnectionProfile^ profile = NetworkInformation::GetInternetConnectionProfile();
     return (profile && profile->GetNetworkConnectivityLevel() == NetworkConnectivityLevel::InternetAccess);
+}
+
+bool IsOnMobileNetwork() {
+	//Retrieve the ConnectionProfile
+	ConnectionProfile^ profile = NetworkInformation::GetInternetConnectionProfile();
+    return (profile && profile->GetNetworkConnectivityLevel() == NetworkConnectivityLevel::InternetAccess && profile.GetConnectionCost() != NetworkCostType.Unrestricted);
 }
 
 #elif _WIN32
@@ -28,10 +40,18 @@ BOOL IsOnline() {
 	return bIsConnected;
 }
 
+BOOL IsOnMobileNetwork() {
+	//unreliable...
+	//what if 3g dongle/card is specified as lan adapter?
+	DWORD dwState = 0 ;
+	BOOL bIsConnected = InternetGetConnectedState(&dwState, 0);
+    return bIsConnected && dwState & INTERNET_CONNECTION_MODEM;
+}
+
 #elif __APPLE__
 //mac
 bool IsOnline() {
-
+	return true;
 }
 
 #endif
