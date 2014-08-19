@@ -1,5 +1,7 @@
 Strict
 
+'version 3
+' - small tweak to make compile with mingw work (but doesn't detect online)
 'version 2
 ' - updated to add IsOnMobileNetwork()
 'version 1
